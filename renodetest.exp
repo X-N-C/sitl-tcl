@@ -1,0 +1,15 @@
+spawn telnet localhost 8888
+expect "'^]'."
+expect "(monitor)"
+send "include @scripts/single-node/crazyflie.resc\r"
+expect "(CF2.1)"
+send "currentTime\r"
+expect "(CF2.1)"
+send {emulation RunFor "0:0:0.010"}
+send "\r"
+expect "(CF2.1)"
+send "currentTime\r"
+expect "(CF2.1)"
+#send "$spawn_id"
+#puts "hello!"
+interact
